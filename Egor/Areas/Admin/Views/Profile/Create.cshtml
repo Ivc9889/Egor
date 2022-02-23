@@ -1,0 +1,19 @@
+﻿@{
+    string title = "Создание профиля направления";
+	ViewData["Title"] = title;
+}
+<h3 class="mb-4">@title</h3>
+<form method="post" class="form-horizontal" role="form">
+    <input type="hidden" name="Id" />   
+    <input type="hidden" name="DeptId" value="@ViewBag.DeptId" /> 
+    <div class="form-group mb-2">
+        <label for="Name" class="col-md-2 control-label">Название:</label>
+        <div class="col-md-7 mx-auto">
+            <input type="text" name="Name" class="form-control" required />
+        </div>       
+    </div>   
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Отправить" />
+    </div>
+</form>
+<a asp-action="Index" asp-route-id="@ViewBag.DeptId" class="btn btn-outline-secondary mt-3">Назад</a>

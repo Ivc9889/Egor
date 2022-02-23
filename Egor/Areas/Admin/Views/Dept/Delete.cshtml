@@ -1,0 +1,12 @@
+﻿@model Egor.Models.Dept
+@{
+	ViewData["Title"] = "Удаление направления";
+}
+<h3 class="text-danger mb-3">Вы уверены что хотите удалить направление вместе с его профилями и дисциплинами?</h3>
+<form method="post" role="form"> 
+	<input type="hidden" name="Id" value="@Model.Id"/>
+	<input type="hidden" name="Title" value="@Model.Code"/>
+	<input type="hidden" name="ParentId" value="@Model.Name"/>
+	<button class="btn-danger btn">Удалить</button>
+</form>
+<a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary mt-3">Назад</a>

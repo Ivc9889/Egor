@@ -1,0 +1,41 @@
+﻿@using Egor.Models
+@using Egor.ViewModels
+@model ShowProgramViewModel
+@{
+	string title = "Программы";
+	ViewData["Title"] = title;
+}
+<a asp-area="" asp-controller="Home" class="btn-outline-primary btn mb-3">Выйти из админки</a>
+<h2 class="mb-3">Программы профиля: @ViewBag.ProfileName</h2>
+<div class="mb-3" style="text-align: left;">
+	<a asp-controller="Program" asp-action="CreateTypeProgram" asp-route-id="@ViewBag.ProfileId" class="btn-outline-primary btn">Создать тип программы</a>
+	<a asp-controller="Program" asp-action="CreateDiscipline" asp-route-id="@ViewBag.ProfileId" class="btn-outline-primary btn">Создать дисциплину</a>
+	<a asp-controller="Profile" asp-action="Index" asp-route-id="@ViewBag.DeptId" class="btn btn-outline-secondary">Назад</a>
+</div>
+@foreach (TypeProgram typeProgram in Model.TypesProgram)
+{
+	<table class="table table-bordered">
+		<thead class="table-head">
+			<tr style="background-color: #cff4fc;">
+				<th scope="col" colspan="4">@typeProgram.Name</th>
+			</tr>
+		</thead>
+		<tbody class="table-body">
+			<tr>
+				<td colspan="4">
+					<a asp-action="EditTypeProgram" asp-route-id="@typeProgram.Id" class="btn-outline-primary btn">Редактировать тип программы</a>
+					<a asp-action="DeleteTypeProgram" asp-route-id="@typeProgram.Id" class="btn-outline-danger btn">Удалить тип программы</a>
+				</td>
+			</tr>
+			@foreach (Discipline discipline in Model.Disciplines.Where(p => p.TypeProgramId == typeProgram.Id))
+			{
+				<tr>
+					<td>@discipline.Code</td>
+					<td class="name"><a href="~/Files/@discipline.Content">@discipline.Name</a></td>
+					<td><a asp-action="EditDiscipline" asp-route-profile_id="@ViewBag.ProfileId" asp-route-disc_id="@discipline.Id" class="btn-outline-primary btn">Редактировать</a></td>
+					<td><a asp-action="DeleteDiscipline" asp-route-profile_id="@ViewBag.ProfileId" asp-route-disc_id="@discipline.Id" class="btn-outline-danger btn">Удалить</a></td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}

@@ -1,0 +1,90 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1 1 auto;
+}
+
+.header {
+    background: url("../images/head1.png") no-repeat center;
+    height: 225px;
+    background-color: #b4ddaa;
+}
+
+.section-footer {
+    background: url("../images/podval.png") no-repeat center;
+    height: 197px;
+}
+
+.dept-item__title {
+    padding: 15px 0;
+    background-color: #ededed;
+    position: relative;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.table-head {
+    position: relative;
+    cursor: pointer;
+}
+
+.dept-item__title::after,
+.table-head th::after {
+    content: "";
+    background: url('../images/down-arrow.svg') no-repeat;
+    position: absolute;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    transition: all .3s;
+    transform: rotate(0deg);
+    margin-right: 20px;
+}
+
+.table-head th::after {
+    width: 23px;
+    height: 23px;
+}
+
+.table-head.show th::after {
+    transform: rotate(180deg) translateY(0px);
+}
+
+.name {
+    text-align: left;
+}
+
+.show::after {
+    transform: rotate(180deg);
+}
+
+.dept-item__title + .dept-item__body,
+.table-head + .table-body {
+    display: none;
+}
+
+.dept-item__title.show + .dept-item__body {
+    display: block;
+}
+
+.table-head.show + .table-body {
+    display: table-header-group;
+}
+
+.new-file {
+    display: none;
+}

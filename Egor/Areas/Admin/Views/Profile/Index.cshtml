@@ -1,0 +1,30 @@
+﻿@using Egor.Models
+@model IEnumerable<Egor.Models.Profile>
+@{
+	ViewData["Title"] = "Профили";
+}
+<a asp-area="" asp-controller="Home" class="btn-outline-primary btn mb-3">Выйти из админки</a>
+<h2 class="mb-3">Профили направления: @ViewBag.Dept</h2>
+<div class="mb-3" style="text-align: left;">
+	<a asp-controller="Profile" asp-action="Create" asp-route-id="@ViewBag.DeptId" class="btn-outline-primary btn">Создать профиль</a>
+	<a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Назад</a>
+</div>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th scope="col">Название</th>
+			<th scope="col">Редактировать</th>
+			<th scope="col">Удалить</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (Profile profile in Model)
+		{
+			<tr>
+				<td class="name"><a asp-controller="Program" asp-route-id="@profile.Id">@profile.Name</a></td>
+				<td><a asp-action="Edit" asp-route-id="@profile.Id" class="btn-outline-primary btn">Редактировать</a></td>
+				<td><a asp-action="Delete" asp-route-id="@profile.Id" class="btn-outline-danger btn">Удалить</a></td>
+			</tr>
+		}
+	</tbody>
+</table>

@@ -1,0 +1,12 @@
+﻿@model Egor.Models.Profile
+@{
+	ViewData["Title"] = "Удаление профиля направления";
+}
+<h3 class="text-danger">Вы уверены что хотите удалить профиль вместе с его типами дисциплин и самими дисциплинами?</h3>
+<form method="post" role="form"> 
+	<input type="hidden" name="Id" value="@Model.Id"/>
+	<input type="hidden" name="DeptId" value="@Model.DeptId"/>
+	<input type="hidden" name="Name" value="@Model.Name"/>
+	<button class="btn-danger btn">Удалить</button>
+</form>
+<a asp-action="Index" asp-route-id="@Model.DeptId" class="btn btn-outline-secondary mt-3">Назад</a>

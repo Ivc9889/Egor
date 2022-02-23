@@ -1,0 +1,36 @@
+﻿@using Egor.ViewModels
+@model DeptViewModel
+@{
+	ViewData["Title"] = "Профили направления";
+}
+<h2>Направление: @ViewBag.Dept</h2>
+<a asp-action="Index" class="btn-outline-secondary btn mb-2">Назад</a>
+<div class="dept">
+	@foreach (Profile profile in Model.Profiles)
+	{
+		<div class="dept-item">
+			<h4 class="dept-item__title">@profile.Name</h4>
+			<div class="dept-item__body">
+				@foreach (TypeProgram typeProgram in Model.TypesProgram.Where(p => p.ProfileId == @profile.Id))
+				{
+					<table class="table table-hover table-bordered">
+						<thead>
+							<tr style="background-color: #cff4fc;">
+								<th scope="col" colspan="2">@typeProgram.Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (Discipline discipline in Model.Disciplines.Where(p => p.TypeProgramId == typeProgram.Id))
+							{
+								<tr>
+									<td>@discipline.Code</td>
+									<td class="name"><a href="~/Files/@discipline.Content">@discipline.Name</a></td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				}
+			</div>
+		</div>
+	}
+</div>

@@ -1,0 +1,50 @@
+﻿@using Egor.ViewModels
+@model AdminViewModel
+@{
+	string title = "Направления";
+	ViewData["Title"] = title;
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+	<h3>Добро пожаловать, @User.Identity.Name</h3>
+	<form method="post" asp-area="Admin" asp-controller="Account" asp-action="Logout">
+		<input type="submit" class="btn-outline-primary btn mb-3" value="Выйти из админки" />
+	</form>
+	<h2 class="mb-3">@title</h2>
+	<div class="mb-3" style="text-align: left;">
+		<a asp-controller="Dept" asp-action="Create" class="btn-outline-primary btn">Создать направление</a>
+	</div>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th scope="col">Код</th>
+				<th scope="col">Название</th>
+				<th scope="col">Редактировать</th>
+				<th scope="col">Удалить</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var dept in Model.Depts)
+			{
+				<tr>
+					<td>@dept.Code</td>
+					<td class="name"><a asp-controller="Profile" asp-route-id="@dept.Id">@dept.Name</a></td>
+					<td><a asp-controller="Dept" asp-action="Edit" asp-route-id="@dept.Id" class="btn-outline-primary btn">Редактировать</a></td>
+					<td><a asp-controller="Dept" asp-action="Delete" asp-route-id="@dept.Id" class="btn-outline-danger btn">Удалить</a></td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+else
+{
+    <div>
+        <div>
+            <a asp-area="Admin" class="btn btn-warning btn-lg" asp-controller="Account" asp-action="Login">Вход</a>
+        </div>
+        <div>
+            <a asp-area="Admin" class="btn btn-light btn-lg" asp-controller="Account" asp-action="Register">Регистрация</a>
+        </div>
+    </div>
+}

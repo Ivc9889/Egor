@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Egor.Models.Dept>
+@{
+	ViewData["Title"] = "Главная страница";
+}
+<h2 class="mb-3">Направления</h2>
+<table class="table table-hover table-bordered">
+	<thead>
+		<tr>
+			<th scope="col">Код</th>
+			<th scope="col">Название</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (Dept dept in Model)
+		{
+			<tr>
+				<td>@dept.Code</td>
+				<td class="name"><a href="~/Home/Dept/@dept.Id">@dept.Name</a></td>
+			</tr>
+		}
+	</tbody>
+</table>

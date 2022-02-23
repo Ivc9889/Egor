@@ -1,0 +1,14 @@
+﻿@model Egor.Models.Discipline
+@{
+	ViewData["Title"] = "Удаление дисциплины";
+}
+<h3 class="text-danger">Вы уверены что хотите удалить дисциплину?</h3>
+<form method="post" role="form"> 
+	<input type="hidden" name="Id" value="@Model.Id"/>
+	<input type="hidden" name="Code" value="@Model.Code"/>
+	<input type="hidden" name="Name" value="@Model.Name"/>
+	<input type="hidden" name="TypeProgramId" value="@Model.TypeProgramId"/>
+	<input type="hidden" name="Content" value="@Model.Content"/>
+	<button class="btn-danger btn">Удалить</button>
+</form>
+<a asp-action="Index" asp-route-id="@ViewBag.ProfileId" class="btn btn-outline-secondary mt-3">Назад</a>
