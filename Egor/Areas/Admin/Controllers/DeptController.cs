@@ -17,6 +17,8 @@ namespace Egor.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Edit(int? id)
         {
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+
             if (id == null) return RedirectToRoute("MyArea", new { area = "Admin", controller = "Home", action = "Index" });
             return View(db.Depts.Find(id));
         }
@@ -34,6 +36,8 @@ namespace Egor.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Delete(int? id)
         {
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+
             if (id == null) return RedirectToRoute("MyArea", new { area = "Admin", controller = "Home", action = "Index" });
             return View(db.Depts.Find(id));
         }
@@ -63,6 +67,8 @@ namespace Egor.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
 		{
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+
             return View();
 		}
 

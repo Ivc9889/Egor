@@ -5,6 +5,7 @@
 	string title = "Программы";
 	ViewData["Title"] = title;
 }
+<h3>Добро пожаловать, @User.Identity.Name</h3>
 <a asp-area="" asp-controller="Home" class="btn-outline-primary btn mb-3">Выйти из админки</a>
 <h2 class="mb-3">Программы профиля: @ViewBag.ProfileName</h2>
 <div class="mb-3" style="text-align: left;">

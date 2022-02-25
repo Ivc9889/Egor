@@ -3,6 +3,7 @@
 @{
 	ViewData["Title"] = "Профили";
 }
+<h3>Добро пожаловать, @User.Identity.Name</h3>
 <a asp-area="" asp-controller="Home" class="btn-outline-primary btn mb-3">Выйти из админки</a>
 <h2 class="mb-3">Профили направления: @ViewBag.Dept</h2>
 <div class="mb-3" style="text-align: left;">

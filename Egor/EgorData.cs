@@ -58,13 +58,33 @@ namespace Egor
 				context.TypesProgram.AddRange(
 					new TypeProgram
 					{
-						Name = "Базовая",
+						Name = "Базовая", 
 						ProfileId = 1
 					},
 					new TypeProgram
 					{
 						Name = "Вариативная(Обязательные дисциплины)",
 						ProfileId = 1
+					},
+					new TypeProgram
+					{
+						Name = "Вариативная(По выбору)",
+						ProfileId = 1
+					},
+					new TypeProgram
+					{
+						Name = "Базовая",
+						ProfileId = 2
+					},
+					new TypeProgram
+					{
+						Name = "Вариативная(Обязательные дисциплины)",
+						ProfileId = 2
+					},
+					new TypeProgram
+					{
+						Name = "Вариативная(По выбору)",
+						ProfileId = 2
 					},
 					new TypeProgram
 					{
@@ -82,7 +102,27 @@ namespace Egor
 						ProfileId = 3
 					},
 					new TypeProgram
-                    {
+					{
+						Name = "Вариативная(По выбору)",
+						ProfileId = 3
+					},
+					new TypeProgram
+					{
+						Name = "Базовая",
+						ProfileId = 4
+					},
+					new TypeProgram
+					{
+						Name = "Вариативная(Обязательные дисциплины)",
+						ProfileId = 4
+					},
+					new TypeProgram
+					{
+						Name = "Вариативная(По выбору)",
+						ProfileId = 4
+					},
+					new TypeProgram
+					{
 						Name = "Обязательная часть",
 						ProfileId = 4
 					},
@@ -129,56 +169,56 @@ namespace Egor
 					{
 						Code = "Б1.О.2.8",
 						Name = "численные методы решения уравнений математической физики",
-						TypeProgramId = 3,
+						TypeProgramId = 7,
 						Content = "20211118-а34.pdf"
 					},
                     new Discipline
-                    {
+					{
 						Code = "Б1.Б.16",
 						Name = "безопасность жизнедеятельности",
-						TypeProgramId = 4,
+						TypeProgramId = 8,
 						Content = "20201201-п3.pdf"
 					},
 					new Discipline
 					{
 						Code = "Б1.В.ОД.1",
 						Name = "русский язык и культура речи",						
-						TypeProgramId = 5,
+						TypeProgramId = 9,
 						Content = "20201103-р29.pdf"
 					},
                     new Discipline
-                    {
+					{
 						Code = "Б1.О.1.1",
 						Name = "история",
-						TypeProgramId = 6,
+						TypeProgramId = 14,
 						Content = "20211117-а25.pdf"
 					},
 					new Discipline
 					{ 
 						Code = "Б1.О.3.3",
 						Name = "кратные интегралы и ряды",
-						TypeProgramId = 6,
+						TypeProgramId = 14,
 						Content = "20211022-з28.pdf"
 					},
 					new Discipline
 					{
 						Code = "Б1.О.1.8",
 						Name = "психология",
-						TypeProgramId = 6,
+						TypeProgramId = 14,
 						Content = "20211019-з24.pdf"
 					},
 					new Discipline
 					{
 						Code = "Б1.В.1.1",
 						Name = "функциональный анализ",
-						TypeProgramId = 7,
+						TypeProgramId = 15,
 						Content = "20211213-м20.pdf"
 					},
 					new Discipline
 					{
 						Code = "Б1.В.1.3",
 						Name = "введение в case-технологии",
-						TypeProgramId = 7,
+						TypeProgramId = 15,
 						Content = "20211210-м41.pdf"
 					}
 				);

@@ -17,6 +17,8 @@ namespace Egor.Areas.Admin.Controllers
         }
         public IActionResult Index(int? id)
         {
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+
             ShowProgramViewModel showProgramViewModel = new ShowProgramViewModel
             {
                 TypesProgram = db.TypesProgram.Where(s => s.ProfileId == id),
@@ -33,6 +35,8 @@ namespace Egor.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult CreateTypeProgram(int? id)
         {
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+
             ViewBag.ProfileId = id;
             return View();
         }
@@ -48,6 +52,8 @@ namespace Egor.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult EditTypeProgram(int? id)
         {
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+
             if (id == null) return RedirectToRoute("MyArea", new { area = "Admin", controller = "Program", action = "Index" });
 
             TypeProgram typeProgramEdit = db.TypesProgram.Find(id);
@@ -70,6 +76,8 @@ namespace Egor.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult DeleteTypeProgram(int? id)
         {
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+
             return View(db.TypesProgram.Find(id));
         }
 
@@ -90,6 +98,8 @@ namespace Egor.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult CreateDiscipline(int? id)
         {
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+
             ViewBag.TypesProgram = new SelectList(db.TypesProgram.Where(s => s.ProfileId == id), "Id", "Name");
             ViewBag.ProfileId = id;
             return View();
@@ -137,6 +147,8 @@ namespace Egor.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult EditDiscipline(int? profile_id, int? disc_id)
         {
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+
             Discipline disciplineEdit = db.Disciplines.Find(disc_id);
             ViewBag.TypesProgram = new SelectList(db.TypesProgram.Where(s => s.ProfileId == profile_id), "Id", "Name");
             ViewBag.TypeProgramId = db.TypesProgram.FirstOrDefault(s => s.Id == disciplineEdit.TypeProgramId).Id;
@@ -170,6 +182,8 @@ namespace Egor.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult DeleteDiscipline(int? profile_id, int? disc_id)
         {
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+
             Discipline disciplineDelete = db.Disciplines.Find(disc_id);
             ViewBag.TypeProgramId = db.TypesProgram.FirstOrDefault(s => s.Id == disciplineDelete.TypeProgramId).Id;
             ViewBag.ProfileId = profile_id;

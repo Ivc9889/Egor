@@ -14,8 +14,10 @@ namespace Egor.Areas.Admin.Controllers
             db = context;
             this.hostingEnvironment = hostingEnvironment;
         }
-        public IActionResult Index(int? id)
+        public IActionResult Index(int id)
         {
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+
             Dept dept = db.Depts.Find(id);
             ViewBag.Dept = $"{dept.Code} - {dept.Name}";
             ViewBag.DeptId = id;
@@ -25,6 +27,8 @@ namespace Egor.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create(int? id)
 		{
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+
             ViewBag.DeptId = id;
             return View();
         }
@@ -34,12 +38,33 @@ namespace Egor.Areas.Admin.Controllers
         {
             db.Profiles.Add(profile);
             db.SaveChanges();
+
+            TypeProgram typeProgramBase = new TypeProgram
+            { 
+                Name = "Базовая",
+                ProfileId = profile.Id
+            };
+            TypeProgram typeProgramVariableRequire = new TypeProgram
+            {
+                Name = "Вариативная(Обязательные дисциплины)",
+                ProfileId = profile.Id
+            };
+            TypeProgram typeProgramVariableChoose = new TypeProgram
+            {
+                Name = "Вариативная(По выбору)",
+                ProfileId = profile.Id
+            };
+           
+            db.TypesProgram.AddRange(typeProgramBase, typeProgramVariableRequire, typeProgramVariableChoose);
+            db.SaveChanges();
             return RedirectToRoute("MyArea", new { area = "Admin", controller = "Profile", action = "Index", id = profile.DeptId });
         }
 
         [HttpGet]
         public IActionResult Edit(int? id)
         {
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+
             if (id == null) return RedirectToRoute("MyArea", new { area = "Admin", controller = "Profile", action = "Index" });
 
             Profile profileEdit = db.Profiles.Find(id);
@@ -62,6 +87,8 @@ namespace Egor.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Delete(int? id)
         {
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+
             return View(db.Profiles.Find(id));
         }
 
